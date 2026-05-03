@@ -1,0 +1,121 @@
+# 🚀 API de Cadastro e Gestão de Pessoas
+
+## 📌 Sobre o Projeto
+
+Este projeto consiste no desenvolvimento de uma API REST utilizando **Java + Spring Boot**, com foco em aplicar conceitos de arquitetura em camadas, boas práticas de desenvolvimento e integração com banco de dados relacional.
+
+A aplicação tem como objetivo gerenciar entidades como pessoas e suas informações, permitindo operações de cadastro, consulta, atualização e remoção.
+
+---
+
+## 🧱 Arquitetura
+
+O projeto segue o padrão de **Arquitetura em Camadas**, dividido em:
+
+* **Controller** → Responsável pela exposição dos endpoints (camada de entrada)
+* **Service** → Contém as regras de negócio
+* **Repository** → Comunicação com o banco de dados
+* **Model (Entity)** → Representação das entidades do sistema
+* **DTO** → Transferência de dados entre camadas
+* **Exception** → Tratamento global de erros
+
+---
+
+## 🛠️ Tecnologias Utilizadas
+
+* Java 17+
+* Spring Boot
+* Spring Data JPA
+* PostgreSQL
+* Docker / Docker Compose
+* Maven
+
+---
+
+## 📦 Estrutura do Projeto
+
+```
+src/main/java/com/seuprojeto
+├── controller
+├── service
+├── repository
+├── model
+├── dto
+├── exception
+└── config
+```
+
+---
+
+## ⚙️ Como Executar o Projeto
+
+### 🔹 Pré-requisitos
+
+* Java 17+
+* Docker
+* Maven
+
+---
+
+### 🔹 Subindo o banco com Docker
+
+```bash
+docker-compose up -d
+```
+
+---
+
+### 🔹 Executando a aplicação
+
+```bash
+./mvnw spring-boot:run
+```
+
+ou
+
+```bash
+mvn spring-boot:run
+```
+
+---
+
+## 🗄️ Banco de Dados
+
+* SGBD: PostgreSQL
+* Configuração via `application.yml`
+* Mapeamento utilizando JPA/Hibernate
+
+---
+
+## 🔄 Endpoints (Exemplo)
+
+| Método | Endpoint      | Descrição              |
+| ------ | ------------- | ---------------------- |
+| GET    | /pessoas      | Lista todas as pessoas |
+| GET    | /pessoas/{id} | Busca por ID           |
+| POST   | /pessoas      | Cria uma nova pessoa   |
+| PUT    | /pessoas/{id} | Atualiza uma pessoa    |
+| DELETE | /pessoas/{id} | Remove uma pessoa      |
+
+---
+
+## 📖 Boas Práticas Aplicadas
+
+* Separação de responsabilidades (SRP)
+* Uso de DTOs para isolamento de camadas
+* Padronização de respostas da API
+
+---
+
+## 🚧 Roadmap
+
+* [ ] Implementar CRUD completo de Pessoas
+* [ ] Adicionar validações com Bean Validation
+* [ ] Adicionar documentação com Swagger
+* [ ] Deploy com Docker
+
+---
+
+## 👨‍💻 Vagner
+
+Desenvolvido para fins de estudo e prática de desenvolvimento backend com Java e Spring.
