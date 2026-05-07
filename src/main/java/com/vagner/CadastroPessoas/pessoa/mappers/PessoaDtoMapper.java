@@ -1,0 +1,31 @@
+package com.vagner.CadastroPessoas.pessoa.mappers;
+
+import com.vagner.CadastroPessoas.pessoa.domain.Pessoa;
+import com.vagner.CadastroPessoas.pessoa.dto.PessoaDto;
+import org.springframework.stereotype.Component;
+
+@Component
+public class PessoaDtoMapper {
+
+    public Pessoa toDomain(PessoaDto pessoaDto){
+        Pessoa pessoa = new Pessoa();
+        pessoa.setId(pessoaDto.getId());
+        pessoa.setNome(pessoaDto.getNome());
+        pessoa.setEmail(pessoaDto.getEmail());
+        pessoa.setStatusSocial(pessoaDto.getStatusSocial());
+        pessoa.setAtividade(pessoaDto.getAtividade());
+        return pessoa;
+    }
+
+    public PessoaDto toDto(Pessoa pessoa){
+        PessoaDto pessoaDto = new PessoaDto();
+        pessoaDto.setId(pessoa.getId());
+        pessoaDto.setNome(pessoa.getNome());
+        pessoaDto.setEmail(pessoa.getEmail());
+        pessoaDto.setStatusSocial(pessoa.getStatusSocial());
+        pessoaDto.setAtividade(pessoa.getAtividade());
+        return pessoaDto;
+    }
+
+
+}
