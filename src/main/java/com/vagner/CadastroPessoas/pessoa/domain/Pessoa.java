@@ -22,6 +22,8 @@ public class Pessoa{
     private int idade;
     private String email;
     private StatusSocial statusSocial;
+    @ManyToOne
+    @JoinColumn(name = "atividade_id")
     private Atividade atividade;
 
     public Long getId() {
