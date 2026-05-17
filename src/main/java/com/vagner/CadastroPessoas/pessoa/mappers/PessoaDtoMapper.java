@@ -11,6 +11,7 @@ public class PessoaDtoMapper {
         Pessoa pessoa = new Pessoa();
         pessoa.setId(pessoaDto.getId());
         pessoa.setNome(pessoaDto.getNome());
+        pessoa.setIdade(pessoaDto.getIdade());
         pessoa.setEmail(pessoaDto.getEmail());
         pessoa.setStatusSocial(pessoaDto.getStatusSocial());
         pessoa.setAtividade(pessoaDto.getAtividade());
@@ -21,6 +22,7 @@ public class PessoaDtoMapper {
         PessoaDto pessoaDto = new PessoaDto();
         pessoaDto.setId(pessoa.getId());
         pessoaDto.setNome(pessoa.getNome());
+        pessoaDto.setIdade(pessoa.getIdade());
         pessoaDto.setEmail(pessoa.getEmail());
         pessoaDto.setStatusSocial(pessoa.getStatusSocial());
         pessoaDto.setAtividade(pessoa.getAtividade());
