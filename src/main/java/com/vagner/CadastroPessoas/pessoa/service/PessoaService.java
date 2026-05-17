@@ -7,6 +7,7 @@ import com.vagner.CadastroPessoas.pessoa.repository.PessoaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -33,5 +34,25 @@ public class PessoaService {
         return pessoaList.stream().map(pessoaDtoMapper::toDto).collect(Collectors.toList());
     }
 
+    //Update people
+    public PessoaDto update(Long id, PessoaDto pessoaDto){
+        Optional<Pessoa> pessoaExiste = pessoaRepository.findById(id);
+        if(pessoaExiste.isPresent()){
+            Pessoa peopleUpdate = pessoaExiste.get();
+            peopleUpdate.setNome(pessoaDto.getNome());
+            peopleUpdate.setIdade(pessoaDto.getIdade());
+            peopleUpdate.setEmail(pessoaDto.getEmail());
+            peopleUpdate.setStatusSocial(pessoaDto.getStatusSocial());
+            peopleUpdate.setAtividade(pessoaDto.getAtividade());
+            Pessoa peopleSave = pessoaRepository.save(peopleUpdate);
+            return pessoaDtoMapper.toDto(peopleSave);
+        }
+        return null;
+    }
+
+    //Delete people
+    public void delete(Long id){
+        pessoaRepository.deleteById(id);
+    }
 
 }
