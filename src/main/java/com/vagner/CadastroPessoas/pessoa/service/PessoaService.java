@@ -34,6 +34,12 @@ public class PessoaService {
         return pessoaList.stream().map(pessoaDtoMapper::toDto).collect(Collectors.toList());
     }
 
+    //Read by id
+    public PessoaDto readId(Long id){
+        Optional<Pessoa> peopleId = pessoaRepository.findById(id);
+        return peopleId.map(pessoaDtoMapper::toDto).orElse(null);
+    }
+
     //Update people
     public PessoaDto update(Long id, PessoaDto pessoaDto){
         Optional<Pessoa> pessoaExiste = pessoaRepository.findById(id);
