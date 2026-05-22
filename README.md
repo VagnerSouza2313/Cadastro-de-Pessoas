@@ -1,6 +1,6 @@
-# 🚀 API de Cadastro e Gestão de Pessoas
+# API de Cadastro e Gestão de Pessoas
 
-## 📌 Sobre o Projeto
+## Sobre o Projeto
 
 Este projeto consiste no desenvolvimento de uma API REST utilizando **Java + Spring Boot**, com foco em aplicar conceitos de arquitetura em camadas, boas práticas de desenvolvimento e integração com banco de dados relacional.
 
@@ -8,7 +8,7 @@ A aplicação tem como objetivo gerenciar entidades como pessoas e suas informa�
 
 ---
 
-## 🧱 Arquitetura
+## Arquitetura
 
 O projeto segue o padrão de **Arquitetura em Camadas**, dividido em:
 
@@ -21,7 +21,7 @@ O projeto segue o padrão de **Arquitetura em Camadas**, dividido em:
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 * Java 17+
 * Spring Boot
@@ -32,24 +32,24 @@ O projeto segue o padrão de **Arquitetura em Camadas**, dividido em:
 
 ---
 
-## 📦 Estrutura do Projeto
+## Estrutura do Projeto
 
 ```
-src/main/java/com/seuprojeto
+src/main/java/com/vagner/CadastroPessoas
 ├── controller
 ├── service
 ├── repository
-├── model
+├── domain
 ├── dto
-├── exception
-└── config
+├── mappers
+└── enums
 ```
 
 ---
 
-## ⚙️ Como Executar o Projeto
+## Como Executar o Projeto
 
-### 🔹 Pré-requisitos
+### Pré-requisitos
 
 * Java 17+
 * Docker
@@ -57,7 +57,7 @@ src/main/java/com/seuprojeto
 
 ---
 
-### 🔹 Subindo o banco com Docker
+### Subindo o banco com Docker
 
 ```bash
 docker-compose up -d
@@ -65,7 +65,7 @@ docker-compose up -d
 
 ---
 
-### 🔹 Executando a aplicação
+### Executando a aplicação
 
 ```bash
 ./mvnw spring-boot:run
@@ -79,7 +79,7 @@ mvn spring-boot:run
 
 ---
 
-## 🗄️ Banco de Dados
+## Banco de Dados
 
 * SGBD: PostgreSQL
 * Configuração via `application.yml`
@@ -87,19 +87,19 @@ mvn spring-boot:run
 
 ---
 
-## 🔄 Endpoints (Exemplo)
+## Endpoints
 
 | Método | Endpoint      | Descrição              |
 | ------ | ------------- | ---------------------- |
-| GET    | /pessoas      | Lista todas as pessoas |
-| GET    | /pessoas/{id} | Busca por ID           |
-| POST   | /pessoas      | Cria uma nova pessoa   |
-| PUT    | /pessoas/{id} | Atualiza uma pessoa    |
-| DELETE | /pessoas/{id} | Remove uma pessoa      |
+| GET    | api/readAll     | Lista todas as pessoas |
+| GET    | api/readId/{id} | Busca por ID           |
+| POST   | api/create      | Cria uma nova pessoa   |
+| PUT    | api/update/{id} | Atualiza uma pessoa    |
+| DELETE | api/delete/{id} | Remove uma pessoa      |
 
 ---
 
-## 📖 Boas Práticas Aplicadas
+## Boas Práticas Aplicadas
 
 * Separação de responsabilidades (SRP)
 * Uso de DTOs para isolamento de camadas
@@ -107,15 +107,15 @@ mvn spring-boot:run
 
 ---
 
-## 🚧 Roadmap
+## Roadmap
 
-* [ ] Implementar CRUD completo de Pessoas
+* [ ok ] Implementar CRUD completo de Pessoas
 * [ ] Adicionar validações com Bean Validation
 * [ ] Adicionar documentação com Swagger
-* [ ] Deploy com Docker
+* [ ok ] Deploy com Docker
 
 ---
 
-## 👨‍💻 Vagner
+## Vagner Souza
 
 Desenvolvido para fins de estudo e prática de desenvolvimento backend com Java e Spring.
