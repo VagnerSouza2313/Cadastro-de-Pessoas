@@ -25,7 +25,7 @@ public class PessoasController {
     public ResponseEntity<String> create(@RequestBody PessoaDto pessoaDto){
         pessoaDto = pessoaService.create(pessoaDto);
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body("People created with success, name: " + pessoaDto.getNome());
+                .body("Person created with success, name: " + pessoaDto.getNome());
     }
 
     //BUSCAR TODOS
@@ -44,7 +44,20 @@ public class PessoasController {
         }
         else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("People not found in our registres, ID: " + id);
+                    .body("Person not found in our records, ID: " + id);
+        }
+    }
+
+    //ATUALIZAR PESSOA
+    @PutMapping("/update/{id}")
+    public ResponseEntity<String> update(@PathVariable Long id, @RequestBody PessoaDto pessoaDto){
+        if (pessoaService.readId(id) != null){
+            pessoaService.update(id, pessoaDto);
+            return ResponseEntity.ok("Person update success: " + pessoaDto);
+        }
+        else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Person with id: " + id + " not found in our records.");
         }
     }
 
