@@ -5,6 +5,7 @@ import com.vagner.CadastroPessoas.pessoa.domain.Pessoa;
 import com.vagner.CadastroPessoas.pessoa.dto.PessoaDto;
 import com.vagner.CadastroPessoas.pessoa.mappers.PessoaDtoMapper;
 import com.vagner.CadastroPessoas.pessoa.repository.PessoaRepository;
+import com.vagner.CadastroPessoas.pessoa.service.exceptions.IdNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -41,7 +42,7 @@ public class PessoaService {
     //Read by id
     public PessoaDto readId(Long id){
         Optional<Pessoa> peopleId = pessoaRepository.findById(id);
-        return peopleId.map(pessoaDtoMapper::toDto).orElse(null);
+        return peopleId.map(pessoaDtoMapper::toDto).orElseThrow(() -> new IdNotFoundException("Id not found in our regiters, digit a Id valid"));
     }
 
     //Update people
