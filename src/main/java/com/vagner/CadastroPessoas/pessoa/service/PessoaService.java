@@ -1,5 +1,6 @@
 package com.vagner.CadastroPessoas.pessoa.service;
 
+import com.vagner.CadastroPessoas.pessoa.service.exceptions.EmailDuplicateException;
 import com.vagner.CadastroPessoas.pessoa.domain.Pessoa;
 import com.vagner.CadastroPessoas.pessoa.dto.PessoaDto;
 import com.vagner.CadastroPessoas.pessoa.mappers.PessoaDtoMapper;
@@ -24,11 +25,14 @@ public class PessoaService {
     //Create people
     public PessoaDto create(PessoaDto pessoaDto){
         Pessoa pessoa1 = pessoaDtoMapper.toDomain(pessoaDto);
-        pessoa1 = pessoaRepository.save(pessoa1);
+        if(pessoaRepository.existsByEmail(pessoa1.getEmail())){
+            throw new EmailDuplicateException("Email already registered, register another email");
+        }
+        pessoaRepository.save(pessoa1);
         return pessoaDtoMapper.toDto(pessoa1);
     }
 
-    //Read peoples
+    //Read people
     public List<PessoaDto> read(){
         List<Pessoa> pessoaList = pessoaRepository.findAll();
         return pessoaList.stream().map(pessoaDtoMapper::toDto).collect(Collectors.toList());

@@ -1,6 +1,6 @@
 package com.vagner.CadastroPessoas.pessoa.controller;
 
-import com.sun.net.httpserver.HttpsServer;
+import com.vagner.CadastroPessoas.pessoa.service.exceptions.EmailDuplicateException;
 import com.vagner.CadastroPessoas.pessoa.dto.PessoaDto;
 import com.vagner.CadastroPessoas.pessoa.service.PessoaService;
 import org.springframework.http.HttpStatus;
@@ -23,9 +23,9 @@ public class PessoasController {
     //CRIAR PESSOA
     @PostMapping("/create")
     public ResponseEntity<String> create(@RequestBody PessoaDto pessoaDto){
-        pessoaDto = pessoaService.create(pessoaDto);
-        return ResponseEntity.status(HttpStatus.CREATED)
-                .body("Person created with success, name: " + pessoaDto.getNome());
+            pessoaDto = pessoaService.create(pessoaDto);
+            return ResponseEntity.status(HttpStatus.CREATED)
+                    .body("Person created with success, name: " + pessoaDto.getNome());
     }
 
     //BUSCAR TODOS
