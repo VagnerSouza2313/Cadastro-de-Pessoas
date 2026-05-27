@@ -1,6 +1,5 @@
 package com.vagner.CadastroPessoas.pessoa.controller;
 
-import com.vagner.CadastroPessoas.pessoa.service.exceptions.EmailDuplicateException;
 import com.vagner.CadastroPessoas.pessoa.dto.PessoaDto;
 import com.vagner.CadastroPessoas.pessoa.service.PessoaService;
 import org.springframework.http.HttpStatus;
@@ -11,12 +10,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api")
-public class PessoasController {
+public class PessoaController {
 
     private final PessoaService pessoaService;
 
 
-    public PessoasController(PessoaService pessoaService) {
+    public PessoaController(PessoaService pessoaService) {
         this.pessoaService = pessoaService;
     }
 
