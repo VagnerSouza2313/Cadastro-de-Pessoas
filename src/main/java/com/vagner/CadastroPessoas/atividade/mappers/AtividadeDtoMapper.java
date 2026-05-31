@@ -10,10 +10,10 @@ public class AtividadeDtoMapper {
     public Atividade toDomain(AtividadeDto atividadeDto){
         Atividade atividade = new Atividade();
 
-        atividade.setId(atividade.getId());
-        atividade.setDescricao(atividade.getDescricao());
-        atividade.setGrauAtividade(atividade.getGrauAtividade());
-        atividade.setPessoas(atividade.getPessoas());
+        atividade.setId(atividadeDto.getId());
+        atividade.setDescricao(atividadeDto.getDescricao());
+        atividade.setGrauAtividade(atividadeDto.getGrauAtividade());
+        atividade.setPessoas(atividadeDto.getPessoaList());
         return atividade;
     }
 
