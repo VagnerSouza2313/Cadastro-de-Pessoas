@@ -1,5 +1,7 @@
 package com.vagner.CadastroPessoas.pessoa.service;
 
+import com.vagner.CadastroPessoas.atividade.domain.Atividade;
+import com.vagner.CadastroPessoas.atividade.repository.AtividadeRepository;
 import com.vagner.CadastroPessoas.pessoa.service.exceptions.EmailDuplicateException;
 import com.vagner.CadastroPessoas.pessoa.domain.Pessoa;
 import com.vagner.CadastroPessoas.pessoa.dto.PessoaDto;
@@ -17,10 +19,12 @@ public class PessoaService {
 
     private final PessoaRepository pessoaRepository;
     private final PessoaDtoMapper pessoaDtoMapper;
+    private final AtividadeRepository atividadeRepository;
 
-    public PessoaService(PessoaRepository pessoaRepository, PessoaDtoMapper pessoaDtoMapper) {
+    public PessoaService(PessoaRepository pessoaRepository, PessoaDtoMapper pessoaDtoMapper, AtividadeRepository atividadeRepository) {
         this.pessoaRepository = pessoaRepository;
         this.pessoaDtoMapper = pessoaDtoMapper;
+        this.atividadeRepository = atividadeRepository;
     }
 
     //Create people
@@ -28,6 +32,13 @@ public class PessoaService {
         Pessoa pessoa1 = pessoaDtoMapper.toDomain(pessoaDto);
         if(pessoaRepository.existsByEmail(pessoa1.getEmail())){
             throw new EmailDuplicateException("Email already registered, register another email");
+        }
+        if(pessoaDto.getIdAtividade() != null){
+            Atividade atividade = atividadeRepository
+                    .findById(pessoaDto.getIdAtividade())
+                    .orElseThrow(() ->
+                            new IdNotFoundException("Activity not found"));
+            pessoa1.setAtividade(atividade);
         }
         pessoaRepository.save(pessoa1);
         return pessoaDtoMapper.toDto(pessoa1);
@@ -54,7 +65,6 @@ public class PessoaService {
             peopleUpdate.setIdade(pessoaDto.getIdade());
             peopleUpdate.setEmail(pessoaDto.getEmail());
             peopleUpdate.setStatusSocial(pessoaDto.getStatusSocial());
-            peopleUpdate.setAtividade(pessoaDto.getAtividade());
             Pessoa peopleSave = pessoaRepository.save(peopleUpdate);
             return pessoaDtoMapper.toDto(peopleSave);
         }
