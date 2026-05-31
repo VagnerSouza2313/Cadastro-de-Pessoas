@@ -1,8 +1,19 @@
 package com.vagner.CadastroPessoas.pessoa.dto;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.vagner.CadastroPessoas.atividade.domain.Atividade;
+import com.vagner.CadastroPessoas.atividade.dto.AtividadeDto;
 import com.vagner.CadastroPessoas.pessoa.enums.StatusSocial;
 
+@JsonPropertyOrder({
+        "id",
+        "nome",
+        "idade",
+        "email",
+        "statusSocial",
+        "idAtividade",
+        "atividadeDesc"
+})
 public class PessoaDto {
 
     private Long id;
@@ -10,7 +21,8 @@ public class PessoaDto {
     private int idade;
     private String email;
     private StatusSocial statusSocial;
-    private Atividade atividade;
+    private Long idAtividade;
+    private String atividadeDesc;
 
     public Long getId() {
         return id;
@@ -52,11 +64,19 @@ public class PessoaDto {
         this.statusSocial = statusSocial;
     }
 
-    public Atividade getAtividade() {
-        return atividade;
+    public Long getIdAtividade() {
+        return idAtividade;
     }
 
-    public void setAtividade(Atividade atividade) {
-        this.atividade = atividade;
+    public void setIdAtividade(Long idAtividade) {
+        this.idAtividade = idAtividade;
+    }
+
+    public String getAtividadeDesc() {
+        return atividadeDesc;
+    }
+
+    public void setAtividadeDesc(String atividadeDesc) {
+        this.atividadeDesc = atividadeDesc;
     }
 }
