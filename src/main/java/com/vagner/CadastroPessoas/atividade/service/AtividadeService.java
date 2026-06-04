@@ -42,7 +42,7 @@ public class AtividadeService {
     }
 
     //Update person
-    public AtividadeDto delete(Long id, AtividadeDto atividadeDto){
+    public AtividadeDto update(Long id, AtividadeDto atividadeDto){
         Optional<Atividade> atividade = atividadeRepository.findById(id);
         if (atividade.isPresent()){
             Atividade atividadeUpdate = atividade.get();
