@@ -52,10 +52,33 @@ public class AtividadeController {
             return ResponseEntity.ok(atividadeDto);
         }
         else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Person not found in our records, ID: " + id);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Activity not found in our records, ID: " + id);
         }
     }
 
+    //update activity
+    @PutMapping("/update/{id}")
+    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody AtividadeDto atividadeDto){
+        if (atividadeService.readId(id) != null){
+            AtividadeDto atividadeDtoUpdate = atividadeService.update(id, atividadeDto);
+            return ResponseEntity.ok("Activity update: " + atividadeDtoUpdate);
+        }
+        else{
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Activity with id: " + id + " not found in our records.");
+        }
+    }
+
+    //delete activity
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> delete(@PathVariable Long id){
+        if (atividadeService.readId(id) != null){
+            atividadeService.delete(id);
+            return ResponseEntity.ok("Activity with id: " + id + " deleted.");
+        }
+        else {
+            return ResponseEntity.ok("Activity with id: " + id + " not found in our records.");
+        }
+    }
 
 
 }
