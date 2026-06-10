@@ -22,14 +22,14 @@ public class AtividadeService {
         this.atividadeDtoMapper = atividadeDtoMapper;
     }
 
-    //Create person
+    //Create activity
     public AtividadeDto create(AtividadeDto atividadeDto){
         Atividade atividade = atividadeDtoMapper.toDomain(atividadeDto);
         atividadeRepository.save(atividade);
         return  atividadeDtoMapper.toDto(atividade);
     }
 
-    //Read person
+    //Read activity
     public List<AtividadeDto> read(){
         List<Atividade> atividadeList = atividadeRepository.findAll();
         return atividadeList.stream().map(atividadeDtoMapper::toDto).collect(Collectors.toList());
@@ -41,7 +41,7 @@ public class AtividadeService {
         return atividade.map(atividadeDtoMapper::toDto).orElse(null); //fazer exceções
     }
 
-    //Update person
+    //Update activity
     public AtividadeDto update(Long id, AtividadeDto atividadeDto){
         Optional<Atividade> atividade = atividadeRepository.findById(id);
         if (atividade.isPresent()){
@@ -56,7 +56,7 @@ public class AtividadeService {
         }
     }
 
-    //Delete person
+    //Delete activity
     public void delete(Long id){
         atividadeRepository.deleteById(id);
     }
