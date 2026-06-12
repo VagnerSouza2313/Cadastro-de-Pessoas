@@ -4,6 +4,7 @@ import com.vagner.CadastroPessoas.atividade.domain.Atividade;
 import com.vagner.CadastroPessoas.atividade.dto.AtividadeDto;
 import com.vagner.CadastroPessoas.atividade.mappers.AtividadeDtoMapper;
 import com.vagner.CadastroPessoas.atividade.repository.AtividadeRepository;
+import com.vagner.CadastroPessoas.atividade.service.exceptions.IdNotFoundException;
 import com.vagner.CadastroPessoas.pessoa.domain.Pessoa;
 import org.springframework.stereotype.Service;
 
@@ -38,7 +39,7 @@ public class AtividadeService {
     //Read by id
     public AtividadeDto readId(Long id){
         Optional<Atividade> atividade = atividadeRepository.findById(id);
-        return atividade.map(atividadeDtoMapper::toDto).orElse(null); //fazer exceções
+        return atividade.map(atividadeDtoMapper::toDto).orElseThrow(() -> new IdNotFoundException("Id not found in our regiters, digit a Id valid"));
     }
 
     //Update activity
@@ -52,7 +53,7 @@ public class AtividadeService {
             return atividadeDtoMapper.toDto(atividadeSave);
         }
         else {
-            return null;
+            return atividade.map(atividadeDtoMapper::toDto).orElseThrow(() -> new IdNotFoundException("Id not found in our regiters, digit a Id valid"));
         }
     }
 
