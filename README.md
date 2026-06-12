@@ -93,9 +93,9 @@ mvn spring-boot:run
 | ------ | ------------- | ---------------------- |
 | GET    | api/readAll     | Lista todas as pessoas |
 | GET    | api/readId/{id} | Busca por ID           |
-| POST   | api/create      | Cria uma nova pessoa   |
-| PUT    | api/update/{id} | Atualiza uma pessoa    |
-| DELETE | api/delete/{id} | Remove uma pessoa      |
+| POST   | api/create      | Cria uma nova person   |
+| PUT    | api/update/{id} | Atualiza uma person    |
+| DELETE | api/delete/{id} | Remove uma person      |
 
 ---
 
