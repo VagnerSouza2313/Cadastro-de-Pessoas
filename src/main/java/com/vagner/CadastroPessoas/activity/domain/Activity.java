@@ -20,6 +20,7 @@ public class Activity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long idActivity;
     private String descricao;
     private ActivityDegree activityDegree;
