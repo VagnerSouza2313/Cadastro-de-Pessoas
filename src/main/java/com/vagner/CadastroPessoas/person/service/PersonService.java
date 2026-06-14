@@ -59,12 +59,15 @@ public class PersonService {
     //Update people
     public PersonDto update(Long id, PersonDto personDto){
         Optional<Person> pessoaExiste = personRepository.findById(id);
+        Activity atividade = activityRepository.findById(personDto.getIdAtividade()).orElseThrow(() ->  new RuntimeException("Atividade não encontrada. ID recebido: " + personDto.getIdAtividade()));
         if(pessoaExiste.isPresent()){
             Person peopleUpdate = pessoaExiste.get();
             peopleUpdate.setNome(personDto.getNome());
             peopleUpdate.setIdade(personDto.getIdade());
             peopleUpdate.setEmail(personDto.getEmail());
             peopleUpdate.setSocialStates(personDto.getStatusSocial());
+            peopleUpdate.setActivity(atividade);
+
             Person peopleSave = personRepository.save(peopleUpdate);
             return personDtoMapper.toDto(peopleSave);
         }
