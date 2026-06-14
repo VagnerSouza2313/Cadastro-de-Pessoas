@@ -5,6 +5,8 @@ import com.vagner.CadastroPessoas.activity.dto.ActivityDto;
 import com.vagner.CadastroPessoas.activity.mappers.ActivityDtoMapper;
 import com.vagner.CadastroPessoas.activity.repository.ActivityRepository;
 import com.vagner.CadastroPessoas.activity.service.exceptions.IdNotFoundException;
+import com.vagner.CadastroPessoas.person.domain.Person;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -57,7 +59,13 @@ public class ActivityService {
     }
 
     //Delete activity
+    @Transactional
     public void delete(Long id){
+        Activity activity = activityRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Activity not found"));
+        for (Person person : activity.getPeople()){
+            person.setActivity(null);
+        }
         activityRepository.deleteById(id);
     }
 
