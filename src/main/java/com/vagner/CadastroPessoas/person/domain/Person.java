@@ -16,7 +16,7 @@ public class Person {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idPerson;
 
     private String nome;
     private int idade;
@@ -26,12 +26,12 @@ public class Person {
     @JoinColumn(name = "atividade_id")
     private Activity activity;
 
-    public Long getId() {
-        return id;
+    public Long getIdPerson() {
+        return idPerson;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setIdPerson(Long idPerson) {
+        this.idPerson = idPerson;
     }
 
     public String getNome() {

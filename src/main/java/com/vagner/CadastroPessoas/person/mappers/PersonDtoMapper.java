@@ -11,7 +11,7 @@ public class PersonDtoMapper {
 
         Person person = new Person();
 
-        person.setId(personDto.getId());
+        person.setIdPerson(personDto.getId());
         person.setNome(personDto.getNome());
         person.setIdade(personDto.getIdade());
         person.setEmail(personDto.getEmail());
@@ -23,7 +23,7 @@ public class PersonDtoMapper {
 
         PersonDto personDto = new PersonDto();
 
-        personDto.setId(person.getId());
+        personDto.setId(person.getIdPerson());
         personDto.setNome(person.getNome());
         personDto.setIdade(person.getIdade());
         personDto.setEmail(person.getEmail());
@@ -32,7 +32,7 @@ public class PersonDtoMapper {
         if(person.getActivity() != null){
 
             personDto.setIdAtividade(
-                    person.getActivity().getId()
+                    person.getActivity().getIdActivity()
             );
 
             personDto.setAtividadeDesc(

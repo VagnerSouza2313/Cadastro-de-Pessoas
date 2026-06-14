@@ -20,7 +20,7 @@ public class Activity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idActivity;
     private String descricao;
     private ActivityDegree activityDegree;
 

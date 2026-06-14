@@ -10,7 +10,7 @@ public class ActivityDtoMapper {
     public Activity toDomain(ActivityDto activityDto){
         Activity activity = new Activity();
 
-        activity.setId(activityDto.getId());
+        activity.setIdActivity(activityDto.getId());
         activity.setDescricao(activityDto.getDescricao());
         activity.setActivityDegree(activityDto.getGrauAtividade());
         activity.setPeople(activityDto.getPessoaList());
@@ -20,7 +20,7 @@ public class ActivityDtoMapper {
     public ActivityDto toDto(Activity activity){
         ActivityDto activityDto = new ActivityDto();
 
-        activityDto.setId(activity.getId());
+        activityDto.setId(activity.getIdActivity());
         activityDto.setDescricao(activity.getDescricao());
         activityDto.setGrauAtividade(activity.getActivityDegree());
         activityDto.setPessoaList(activity.getPeople());
