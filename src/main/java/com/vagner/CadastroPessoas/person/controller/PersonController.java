@@ -1,5 +1,6 @@
 package com.vagner.CadastroPessoas.person.controller;
 
+import com.vagner.CadastroPessoas.person.domain.Person;
 import com.vagner.CadastroPessoas.person.dto.PersonDto;
 import com.vagner.CadastroPessoas.person.service.PersonService;
 import org.springframework.http.HttpStatus;
@@ -19,7 +20,7 @@ public class PersonController {
         this.personService = personService;
     }
 
-    //CRIAR PESSOA
+    //create person
     @PostMapping("/create")
     public ResponseEntity<String> create(@RequestBody PersonDto personDto){
             personDto = personService.create(personDto);
@@ -27,14 +28,14 @@ public class PersonController {
                     .body("Person created with success, name: " + personDto.getNome());
     }
 
-    //BUSCAR TODOS
+    //find all people
     @GetMapping("/readAll")
     public ResponseEntity<?> listAll(){
         List<PersonDto> pessoaList = personService.read();
         return ResponseEntity.ok(pessoaList);
     }
 
-    //BUSCAR POR ID
+    //find by id
     @GetMapping("/readId/{id}")
     public ResponseEntity<?> listById(@PathVariable Long id) {
         PersonDto personDto = personService.readId(id);
@@ -47,12 +48,12 @@ public class PersonController {
         }
     }
 
-    //ATUALIZAR PESSOA
+    //put person
     @PutMapping("/update/{id}")
-    public ResponseEntity<String> update(@PathVariable Long id, @RequestBody PersonDto personDto){
+    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody PersonDto personDto){
         if (personService.readId(id) != null){
-            personService.update(id, personDto);
-            return ResponseEntity.ok("Person update success: " + personDto);
+            PersonDto personUpdate = personService.update(id, personDto);
+            return ResponseEntity.ok(personUpdate);
         }
         else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
@@ -60,7 +61,7 @@ public class PersonController {
         }
     }
 
-    //DELETAR
+    //delete
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id){
         personService.delete(id);
