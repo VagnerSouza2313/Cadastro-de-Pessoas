@@ -3,6 +3,7 @@ package com.vagner.CadastroPessoas.person.controller;
 import com.vagner.CadastroPessoas.person.domain.Person;
 import com.vagner.CadastroPessoas.person.dto.PersonDto;
 import com.vagner.CadastroPessoas.person.service.PersonService;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +23,7 @@ public class PersonController {
 
     //create person
     @PostMapping("/create")
+    @Operation(summary = "Create a new person")
     public ResponseEntity<String> create(@RequestBody PersonDto personDto){
             personDto = personService.create(personDto);
             return ResponseEntity.status(HttpStatus.CREATED)
@@ -30,6 +32,7 @@ public class PersonController {
 
     //find all people
     @GetMapping("/readAll")
+    @Operation(summary = "List all people")
     public ResponseEntity<?> listAll(){
         List<PersonDto> pessoaList = personService.read();
         return ResponseEntity.ok(pessoaList);
@@ -37,6 +40,7 @@ public class PersonController {
 
     //find by id
     @GetMapping("/readId/{id}")
+    @Operation(summary = "Find a person by ID")
     public ResponseEntity<?> listById(@PathVariable Long id) {
         PersonDto personDto = personService.readId(id);
         if (personDto != null){
@@ -50,6 +54,7 @@ public class PersonController {
 
     //put person
     @PutMapping("/update/{id}")
+    @Operation(summary = "Update a person by ID")
     public ResponseEntity<?> update(@PathVariable Long id, @RequestBody PersonDto personDto){
         if (personService.readId(id) != null){
             PersonDto personUpdate = personService.update(id, personDto);
@@ -63,6 +68,7 @@ public class PersonController {
 
     //delete
     @DeleteMapping("/delete/{id}")
+    @Operation(summary = "Delete a person by ID")
     public ResponseEntity<?> delete(@PathVariable Long id){
         personService.delete(id);
         return ResponseEntity.ok("Deleted success, ID: " + id);

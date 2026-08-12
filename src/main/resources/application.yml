@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/db_cadastropessoas
+    url: jdbc:postgresql://localhost:5432/db_cadastroPessoas
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver
